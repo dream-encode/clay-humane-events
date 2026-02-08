@@ -54,6 +54,20 @@ class EmailRoutes extends BaseEntityRoutes {
 			}
 		})
 
+		this.router.post('/:emailId/resend', authenticate, requireAdminOrSuperadmin, async (req, res) => {
+			try {
+				const result = await EmailService.resendEmail(req.params.emailId, { user: req.user })
+
+				if (!result.success) {
+					throw new Error('Unable to resend email!')
+				}
+
+				res.status(200).json(result)
+			} catch (error) {
+				res.status(200).json({ error: true, message: error.message })
+			}
+		})
+
 		this.router.get('/count/total', authenticate, requireAdminOrSuperadmin, async (req, res) => {
 			try {
 				const total = await this.service.model.countDocuments(req.query || {})

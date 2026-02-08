@@ -113,6 +113,30 @@ class EmailService extends BaseEntityService {
 	}
 
 	/**
+	 * Resend an existing email by ID.
+	 *
+	 * @since [NEXT_VERSION]
+	 *
+	 * @param {string} emailId Email record ID.
+	 * @param {Object} context Optional context for changelog.
+	 * @return {Promise<Object>} Send result.
+	 */
+	async resendEmail(emailId, context = {}) {
+		const existing = await this.getEntityByID(emailId)
+
+		return await this.sendEmail({
+			to: existing.to,
+			subject: existing.subject,
+			body: existing.body,
+			bodyType: existing.bodyType || 'html',
+			emailType: existing.emailType,
+			groupKey: existing.groupKey,
+			userId: existing.userId,
+			templateData: existing.metadata?.templateData
+		}, context)
+	}
+
+	/**
 	 * Send a password reset email.
 	 *
 	 * @since [NEXT_VERSION]

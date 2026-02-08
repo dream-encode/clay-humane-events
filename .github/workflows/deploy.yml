@@ -35,7 +35,7 @@ jobs:
             git clean -df
 
             if [ -n "${{ github.event.release.tag_name }}" ]; then
-              git checkout tags/${{ github.event.release.tag_name }}
+              git -c advice.detachedHead=false checkout tags/${{ github.event.release.tag_name }}
             else
               git pull origin main
             fi

@@ -8,6 +8,7 @@ export default defineConfig(({ command, mode }) => {
 	process.env = { ...process.env, ...loadEnv( mode, rootDir ) }
 
 	return {
+		envDir: rootDir,
 		define: {
 			'process.env': {},
 			global: {},
@@ -28,7 +29,7 @@ export default defineConfig(({ command, mode }) => {
 		css: {
 			preprocessorOptions: {
 				scss: {
-					api: 'modern-compiler'
+					api: 'modern'
 				}
 			}
 		},

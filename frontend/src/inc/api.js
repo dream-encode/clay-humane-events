@@ -328,6 +328,14 @@ class API {
 		return this.apiPostRequest( `emailTemplate/reset/${ templateType }`, { eventId } )
 	}
 
+	async sendEmail ( emailData ) {
+		return this.apiPostRequest( 'email/send/email', emailData )
+	}
+
+	async resendEmail ( emailId ) {
+		return this.apiPostRequest( `email/${ emailId }/resend` )
+	}
+
 	async getActiveBackupOperations () {
 		return this.apiGetRequest( 'databaseBackup/active' )
 	}
