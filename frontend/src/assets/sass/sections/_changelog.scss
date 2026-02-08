@@ -1,0 +1,144 @@
+.changelog {
+	.changelog-filters {
+		display: flex;
+		gap: 0.75rem;
+		margin-bottom: 1.25rem;
+
+		select {
+			padding: 0.5rem 0.75rem;
+			border: 1px solid var(--border-color);
+			border-radius: 6px;
+			background: var(--bg-primary);
+			color: var(--text-primary);
+			font-size: 0.875rem;
+
+			&:focus {
+				outline: none;
+				border-color: var(--accent-color);
+			}
+		}
+	}
+
+	.changelog-badge {
+		display: inline-block;
+		padding: 0.2rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+
+		&--create {
+			background: #d1fae5;
+			color: #065f46;
+		}
+
+		&--update {
+			background: #dbeafe;
+			color: #1e40af;
+		}
+
+		&--delete {
+			background: #fee2e2;
+			color: #991b1b;
+		}
+
+		&--event {
+			background: #fef3c7;
+			color: #92400e;
+		}
+
+		&--user {
+			background: #e0e7ff;
+			color: #3730a3;
+		}
+
+		&--eventregistration {
+			background: #f3e8ff;
+			color: #6b21a8;
+		}
+
+		&--adminnotification {
+			background: #f1f5f9;
+			color: #475569;
+		}
+	}
+
+	.changelog-expand-btn {
+		background: none;
+		border: none;
+		color: var(--text-secondary);
+		cursor: pointer;
+		padding: 0.25rem;
+
+		&:hover {
+			color: var(--text-primary);
+		}
+	}
+
+	.changelog-detail-row {
+		td {
+			padding-top: 0 !important;
+			border-bottom: 2px solid var(--border-color);
+		}
+	}
+
+	.changelog-changes-detail {
+		padding: 0.75rem 1rem;
+		background: var(--bg-secondary);
+		border-radius: 6px;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.changelog-change-item {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.8125rem;
+	}
+
+	.changelog-change-field {
+		font-weight: 600;
+		color: var(--text-primary);
+		min-width: 120px;
+	}
+
+	.changelog-change-from {
+		color: #991b1b;
+		max-width: 300px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.changelog-change-arrow {
+		color: var(--text-tertiary);
+		font-size: 0.75rem;
+	}
+
+	.changelog-change-to {
+		color: #065f46;
+		max-width: 300px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.changelog-pagination {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 1.25rem;
+		padding: 0.75rem 0;
+	}
+
+	.changelog-pagination-page {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		font-weight: 500;
+	}
+}
+

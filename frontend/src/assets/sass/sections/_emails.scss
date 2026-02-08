@@ -1,0 +1,77 @@
+.emails {
+	.emails-filters {
+		display: flex;
+		gap: 0.75rem;
+		margin-bottom: 1.25rem;
+
+		select {
+			padding: 0.5rem 0.75rem;
+			border: 1px solid var(--border-color);
+			border-radius: 6px;
+			background: var(--bg-primary);
+			color: var(--text-primary);
+			font-size: 0.875rem;
+
+			&:focus {
+				outline: none;
+				border-color: var(--accent-color);
+			}
+		}
+	}
+
+	.emails-badge {
+		display: inline-block;
+		padding: 0.2rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+
+		&--type {
+			background: #e0e7ff;
+			color: #3730a3;
+		}
+
+		&--pending {
+			background: #fef3c7;
+			color: #92400e;
+		}
+
+		&--sent {
+			background: #d1fae5;
+			color: #065f46;
+		}
+
+		&--delivered {
+			background: #d1fae5;
+			color: #065f46;
+		}
+
+		&--failed {
+			background: #fee2e2;
+			color: #991b1b;
+		}
+
+		&--bounced {
+			background: #fee2e2;
+			color: #991b1b;
+		}
+	}
+
+	.emails-pagination {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 1.25rem;
+		padding: 0.75rem 0;
+	}
+
+	.emails-pagination-page {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		font-weight: 500;
+	}
+}
+

@@ -1,0 +1,84 @@
+:root {
+	--bg-primary: #ffffff;
+	--bg-secondary: #f8fafc;
+	--bg-tertiary: #f1f5f9;
+	--bg-accent: #f1f5f9;
+	--bg-hover: #e2e8f0;
+	--bg-card: #ffffff;
+
+	--text-primary: #1e293b;
+	--text-secondary: #64748b;
+	--text-tertiary: #94a3b8;
+	--text-muted: #94a3b8;
+
+	--accent-primary: #3b82f6;
+	--accent-primary-rgb: 59, 130, 246;
+	--accent-error: #ef4444;
+	--accent-error-rgb: 239, 68, 68;
+
+	--border-color: #e2e8f0;
+
+	--transition-fast: 150ms ease-in-out;
+	--transition-normal: 250ms ease-in-out;
+
+	--radius-sm: 0.25rem;
+	--radius-md: 0.375rem;
+	--radius-lg: 0.5rem;
+	--radius-xl: 1rem;
+
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	--shadow-md:
+		0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	--shadow-lg:
+		0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	--shadow-xl:
+		0 20px 25px -5px rgba(0, 0, 0, 0.1),
+		0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+	--color-foreground: #333333;
+	--color-background: #ffffff;
+	--color-background-alt: var(--color-background);
+	--color-background-alt-light: #f6f6f6;
+}
+
+.dark {
+	--bg-primary: #0f172a;
+	--bg-secondary: #1e293b;
+	--bg-tertiary: #334155;
+	--bg-accent: #334155;
+	--bg-hover: #475569;
+	--bg-card: #1e293b;
+
+	--text-primary: #f1f5f9;
+	--text-secondary: #cbd5e1;
+	--text-tertiary: #94a3b8;
+	--text-muted: #94a3b8;
+
+	--accent-primary: #60a5fa;
+	--accent-primary-rgb: 96, 165, 250;
+	--accent-error: #f87171;
+	--accent-error-rgb: 248, 113, 113;
+
+	--border-color: #334155;
+
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+	--shadow-md:
+		0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+	--shadow-lg:
+		0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+	--shadow-xl:
+		0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+
+	--color-foreground: #f1f5f9;
+	--color-background: #0f172a;
+	--color-background-alt: #1e293b;
+	--color-background-alt-light: #334155;
+}
+
+body {
+	background-color: var(--bg-primary);
+	color: var(--text-primary);
+	transition:
+		background-color var(--transition-normal),
+		color var(--transition-normal);
+}

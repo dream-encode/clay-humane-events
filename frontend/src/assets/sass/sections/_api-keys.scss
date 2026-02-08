@@ -1,0 +1,73 @@
+.api-keys {
+	.api-key-value {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		code {
+			font-family: "Courier New", Courier, monospace;
+			font-size: 0.85rem;
+			background: var(--bg-subtle);
+			padding: 0.25rem 0.5rem;
+			border-radius: 4px;
+			user-select: all;
+		}
+	}
+
+	.api-key-copy {
+		padding: 0.25rem 0.5rem;
+		font-size: 0.75rem;
+	}
+
+	.api-key-status {
+		display: inline-block;
+		padding: 0.2rem 0.6rem;
+		border-radius: 12px;
+		font-size: 0.8rem;
+		font-weight: 500;
+
+		&.active {
+			background: var(--color-green-subtle, #d4edda);
+			color: var(--color-green-text, #155724);
+		}
+
+		&.inactive {
+			background: var(--color-red-subtle, #f8d7da);
+			color: var(--color-red-text, #721c24);
+		}
+	}
+
+	.api-key-scopes-table {
+		width: 100%;
+		border-collapse: collapse;
+
+		th,
+		td {
+			padding: 0.4rem 0.75rem;
+			border: 1px solid var(--border-color);
+			text-align: left;
+		}
+
+		th {
+			background: var(--bg-subtle);
+			font-weight: 600;
+			font-size: 0.85rem;
+		}
+
+		th:nth-child(2),
+		th:nth-child(3),
+		td:nth-child(2),
+		td:nth-child(3) {
+			text-align: center;
+			width: 80px;
+		}
+
+		td {
+			font-size: 0.85rem;
+		}
+
+		input[type="checkbox"] {
+			cursor: pointer;
+		}
+	}
+}

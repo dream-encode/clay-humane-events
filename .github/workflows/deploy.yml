@@ -1,0 +1,49 @@
+﻿name: Deploy to production
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_DEPLOY_HOST }}
+          username: ${{ secrets.SSH_DEPLOY_USERNAME }}
+          key: ${{ secrets.SSH_DEPLOY_PRIVATE_KEY }}
+          port: 22
+          script: |
+            set -e
+
+            cd ${{ secrets.SSH_DEPLOY_DOCROOT }}
+
+            git fetch --all
+            git checkout -- .
+            git clean -df
+
+            if [ -n "${{ github.event.release.tag_name }}" ]; then
+              git checkout tags/${{ github.event.release.tag_name }}
+            else
+              git pull origin main
+            fi
+
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install 24
+            nvm use 24
+
+            cd api
+            yarn install --production --frozen-lockfile
+            cd ..
+
+            cd frontend
+            yarn install --frozen-lockfile
+            yarn build
+            cd ..
+
+            pm2 reload clay-humane-events-api

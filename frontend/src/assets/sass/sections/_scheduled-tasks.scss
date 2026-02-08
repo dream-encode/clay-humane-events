@@ -1,0 +1,31 @@
+.page.scheduled-tasks {
+	.status-badge {
+		display: inline-block;
+		padding: 0.2rem 0.6rem;
+		border-radius: 4px;
+		font-size: 0.8rem;
+		font-weight: 500;
+		text-transform: uppercase;
+
+		&.status-complete {
+			background: rgba(46, 160, 67, 0.15);
+			color: #2ea043;
+		}
+
+		&.status-pending {
+			background: rgba(210, 153, 34, 0.15);
+			color: #d29922;
+		}
+
+		&.status-processing {
+			background: rgba(56, 132, 244, 0.15);
+			color: #3884f4;
+		}
+
+		&.status-failed {
+			background: rgba(218, 54, 51, 0.15);
+			color: #da3633;
+		}
+	}
+}
+

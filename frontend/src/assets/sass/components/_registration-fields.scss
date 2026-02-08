@@ -1,0 +1,179 @@
+.reg-fields-config {
+	.reg-fields-toggle {
+		margin-bottom: 1.25rem;
+		padding-bottom: 1.25rem;
+		border-bottom: 1px solid var(--border-color);
+
+		label {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			cursor: pointer;
+		}
+	}
+
+	.reg-fields-empty {
+		color: var(--text-secondary);
+		font-size: 0.9375rem;
+		text-align: center;
+		padding: 2rem 0;
+	}
+}
+
+.reg-fields-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.reg-field-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.75rem 1rem;
+	background: var(--bg-secondary);
+	border: 1px solid var(--border-color);
+	border-radius: 6px;
+
+	.reg-field-item-info {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.reg-field-type-badge {
+		display: inline-block;
+		padding: 0.2rem 0.5rem;
+		background: var(--accent-primary);
+		color: #fff;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+
+	.reg-field-label {
+		font-weight: 500;
+		color: var(--text-primary);
+	}
+
+	.reg-field-required {
+		font-size: 0.75rem;
+		color: var(--accent-error);
+		font-weight: 500;
+	}
+
+	.reg-field-item-actions {
+		display: flex;
+		gap: 0.375rem;
+	}
+}
+
+.reg-fields-add {
+	margin-top: 1rem;
+	text-align: center;
+}
+
+.reg-field-editor {
+	border: 1px solid var(--border-color);
+	border-radius: 6px;
+	padding: 1.25rem;
+	background: var(--bg-secondary);
+
+	.reg-field-editor-title {
+		margin: 0 0 1rem 0;
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--text-primary);
+	}
+
+	.reg-field-editor-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.reg-field-editor-row {
+		display: flex;
+		flex-direction: column;
+		gap: 0.375rem;
+
+		> label {
+			font-size: 0.875rem;
+			font-weight: 500;
+			color: var(--text-secondary);
+		}
+
+		input[type="text"],
+		select {
+			width: 100%;
+			padding: 0.5rem 0.75rem;
+			background: var(--bg-primary);
+			border: 1px solid var(--border-color);
+			border-radius: 6px;
+			color: var(--text-primary);
+			font-size: 0.9375rem;
+			box-sizing: border-box;
+
+			&:focus {
+				outline: none;
+				border-color: var(--accent-primary);
+			}
+		}
+
+		&.reg-field-editor-row-checkbox {
+			flex-direction: row;
+			align-items: center;
+
+			label {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.reg-field-editor-options {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		> label {
+			font-size: 0.875rem;
+			font-weight: 500;
+			color: var(--text-secondary);
+		}
+	}
+
+	.reg-field-option-row {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+
+		input {
+			flex: 1;
+			padding: 0.5rem 0.75rem;
+			background: var(--bg-primary);
+			border: 1px solid var(--border-color);
+			border-radius: 6px;
+			color: var(--text-primary);
+			font-size: 0.875rem;
+			box-sizing: border-box;
+
+			&:focus {
+				outline: none;
+				border-color: var(--accent-primary);
+			}
+		}
+	}
+
+	.reg-field-editor-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--border-color);
+	}
+}

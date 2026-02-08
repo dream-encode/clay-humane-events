@@ -1,0 +1,146 @@
+.home-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding: 3rem 1.5rem;
+
+	.home-content {
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
+		margin-bottom: 3rem;
+
+		.home-logo {
+			max-width: 400px;
+			width: 100%;
+			height: auto;
+
+			@media (max-width: 768px) {
+				max-width: 280px;
+			}
+		}
+
+		.home-login-button {
+			display: inline-block;
+			padding: 12px 40px;
+			background: #10b981;
+			border: none;
+			border-radius: 6px;
+			color: white;
+			font-size: 16px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: background-color 0.2s ease;
+			text-decoration: none;
+
+			&:hover {
+				background: #059669;
+			}
+		}
+	}
+
+	.home-events {
+		width: 100%;
+		max-width: 1200px;
+
+		.home-events-loading,
+		.home-events-empty {
+			text-align: center;
+			font-size: 1.1rem;
+			color: var(--text-secondary);
+			padding: 2rem 0;
+		}
+	}
+
+	.home-events-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+		gap: 2rem;
+
+		@media (max-width: 480px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.home-event-card {
+		background: var(--bg-card);
+		border: 1px solid var(--border-color);
+		border-radius: 12px;
+		overflow: hidden;
+		box-shadow: var(--shadow-md);
+		transition:
+			box-shadow 0.2s ease,
+			transform 0.2s ease;
+		display: flex;
+		flex-direction: column;
+
+		&:hover {
+			box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+			transform: translateY(-2px);
+		}
+
+		.home-event-card-logo {
+			width: 100%;
+			padding: 1.5rem 1.5rem 0;
+
+			img {
+				width: 100%;
+				max-height: 200px;
+				object-fit: contain;
+				border-radius: 8px;
+			}
+		}
+
+		.home-event-card-body {
+			padding: 1.5rem;
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+		}
+
+		.home-event-card-title {
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: var(--text-primary);
+			margin: 0 0 0.5rem;
+		}
+
+		.home-event-card-date {
+			font-size: 0.95rem;
+			color: var(--text-secondary);
+			margin: 0 0 1rem;
+			font-weight: 500;
+		}
+
+		.home-event-card-description {
+			font-size: 0.95rem;
+			color: var(--text-secondary);
+			margin: 0 0 1.5rem;
+			line-height: 1.6;
+			flex: 1;
+		}
+
+		.home-event-card-button {
+			display: inline-block;
+			padding: 14px 32px;
+			background: #10b981;
+			border: none;
+			border-radius: 8px;
+			color: white;
+			font-size: 1rem;
+			font-weight: 600;
+			cursor: pointer;
+			transition: background-color 0.2s ease;
+			text-decoration: none;
+			text-align: center;
+			align-self: flex-start;
+
+			&:hover {
+				background: #059669;
+			}
+		}
+	}
+}

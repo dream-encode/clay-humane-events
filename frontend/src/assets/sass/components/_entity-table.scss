@@ -1,0 +1,78 @@
+.entity-table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+
+	thead {
+		th {
+			text-align: left;
+			padding: 0.75rem 1rem;
+			font-size: 0.8125rem;
+			font-weight: 600;
+			color: var(--text-secondary);
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			border-bottom: 2px solid var(--border-color);
+		}
+	}
+
+	tbody {
+		tr {
+			border-bottom: 1px solid var(--border-color);
+			transition: background-color var(--transition-fast);
+
+			&:hover {
+				background-color: var(--bg-secondary);
+			}
+		}
+
+		td {
+			padding: 0.75rem 1rem;
+			font-size: 0.9375rem;
+			color: var(--text-primary);
+			vertical-align: middle;
+		}
+	}
+
+	th.centered,
+	td.centered {
+		text-align: center;
+	}
+
+	th.actions,
+	td.actions {
+		width: 1%;
+		white-space: nowrap;
+		text-align: center;
+
+		.btn + .btn {
+			margin-left: 0.5rem;
+		}
+	}
+
+	th.avatar-col,
+	td.avatar-col {
+		width: 48px;
+		padding-right: 0;
+	}
+
+	.user-table-avatar {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.user-table-avatar-placeholder {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: var(--bg-secondary);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--text-tertiary);
+		font-size: 0.875rem;
+	}
+}

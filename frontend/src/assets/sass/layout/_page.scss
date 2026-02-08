@@ -1,0 +1,28 @@
+.page {
+	width: 100%;
+
+	.page-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		padding: 0 1rem;
+
+		h2 {
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: var(--text-primary);
+		}
+
+		.page-header-actions {
+			display: flex;
+			gap: 0.5rem;
+		}
+	}
+
+	.section {
+		width: 100%;
+		padding: 0 1rem;
+	}
+}
+
