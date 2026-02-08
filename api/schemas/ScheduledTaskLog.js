@@ -53,7 +53,6 @@ const ScheduledTaskLogSchema = new Schema({
 	timestamps: true
 })
 
-ScheduledTaskLogSchema.index({ key: 1 })
 ScheduledTaskLogSchema.index({ scheduledTaskId: 1 })
 ScheduledTaskLogSchema.index({ status: 1 })
 ScheduledTaskLogSchema.index({ createdAt: -1 })

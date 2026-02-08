@@ -93,7 +93,6 @@ const EmailSchema = new Schema({
 	timestamps: true
 })
 
-EmailSchema.index({ key: 1 })
 EmailSchema.index({ to: 1 })
 EmailSchema.index({ emailType: 1 })
 EmailSchema.index({ status: 1 })

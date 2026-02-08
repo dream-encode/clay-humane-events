@@ -22,7 +22,7 @@ Both the API and frontend share a single set of environment files (`.env`, `.env
 ### 1. Clone the repository
 
 ```bash
-git clone git@github.com:<org>/clay-humane-events.git
+git clone git@github.com:dream-encode/clay-humane-events.git
 cd clay-humane-events
 ```
 
@@ -34,11 +34,11 @@ Create a `.env` file in the project root:
 NODE_ENV=development
 
 # API
-API_PORT=3001
+API_PORT=3263
 FRONTEND_URL=https://dev.clayhumaneevents.local
 
 # MongoDB
-MONGO_DB=clay-humane-events
+MONGO_DB=clayhumaneevents
 MONGO_USER=
 MONGO_PASSWORD=
 MONGO_HOST=localhost
@@ -96,16 +96,6 @@ A GitHub Actions workflow (`.github/workflows/deploy.yml`) triggers on every **p
 
 Nginx is configured to serve `frontend/dist/` for the public site and reverse-proxy `/api` requests to the Express server.
 
-### Required GitHub Secrets
+### Production deploy
 
-| Secret | Description |
-|--------|-------------|
-| `SSH_DEPLOY_HOST` | Droplet IP or hostname |
-| `SSH_DEPLOY_USERNAME` | SSH user |
-| `SSH_DEPLOY_PRIVATE_KEY` | SSH private key |
-| `SSH_DEPLOY_DOCROOT` | Absolute path to the project root on the server |
-
-### Manual deploy
-
-The workflow can also be triggered manually via `workflow_dispatch` in the GitHub Actions UI.
-
+A production deploy is automatically triggered when a release is published.

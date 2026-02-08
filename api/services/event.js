@@ -7,6 +7,31 @@ import BaseEntityService from './abstracts/BaseEntityService.js'
 import Event from '../models/event.js'
 import config from '../config/index.js'
 
+const slugify = (str) => {
+	return str
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-+|-+$/g, '')
+}
+
+const generateUniqueSlug = async (baseSlug, excludeId = null) => {
+	let slug = baseSlug
+	let counter = 1
+	const query = { eventSlug: slug }
+
+	if (excludeId) {
+		query._id = { $ne: excludeId }
+	}
+
+	while (await Event.findOne(query)) {
+		slug = `${baseSlug}-${counter}`
+		query.eventSlug = slug
+		counter++
+	}
+
+	return slug
+}
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const qrcodesDir = path.join(__dirname, '..', 'uploads', 'events', 'qrcodes')
@@ -81,6 +106,11 @@ class EventService extends BaseEntityService {
 	 * @return {Promise<Object>} Saved event document.
 	 */
 	async insertEntity(entityData, context = {}) {
+		if (entityData.eventName && !entityData.eventSlug) {
+			const baseSlug = slugify(entityData.eventName)
+			entityData.eventSlug = await generateUniqueSlug(baseSlug)
+		}
+
 		const savedEntity = await super.insertEntity(entityData, context)
 
 		if (savedEntity.eventSlug) {
@@ -103,9 +133,21 @@ class EventService extends BaseEntityService {
 	 */
 	async updateEntity(id, entityData, context = {}) {
 		const before = await this.model.findById(id)
+
+		const nameChanged = entityData.eventName && before && entityData.eventName !== before.eventName
+		const missingSlug = before && !before.eventSlug
+
+		if (nameChanged || missingSlug) {
+			const baseSlug = slugify(entityData.eventName || before.eventName)
+			entityData.eventSlug = await generateUniqueSlug(baseSlug, before._id)
+		}
+
 		const updatedEntity = await super.updateEntity(id, entityData, context)
 
-		if (before && updatedEntity.eventSlug && updatedEntity.eventSlug !== before.eventSlug) {
+		const slugChanged = before && updatedEntity.eventSlug && updatedEntity.eventSlug !== before.eventSlug
+		const missingQR = updatedEntity.eventSlug && (!updatedEntity.eventPageQR || !updatedEntity.eventRegistrationQR)
+
+		if (slugChanged || missingQR) {
 			this.deleteQRFiles(before)
 			const qrPaths = await this.generateQRCodes(updatedEntity)
 			return this.model.findByIdAndUpdate(id, qrPaths, { new: true })

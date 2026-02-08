@@ -55,7 +55,6 @@ const AdminNotificationSchema = new Schema({
 	timestamps: true
 })
 
-AdminNotificationSchema.index({ key: 1 })
 AdminNotificationSchema.index({ notificationType: 1 })
 AdminNotificationSchema.index({ userId: 1 })
 AdminNotificationSchema.index({ dismissed: 1 })

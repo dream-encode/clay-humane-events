@@ -42,8 +42,6 @@ const SiteOptionSchema = new Schema({
 	timestamps: true
 })
 
-SiteOptionSchema.index({ key: 1 })
-SiteOptionSchema.index({ optionKey: 1 })
 SiteOptionSchema.index({ group: 1 })
 SiteOptionSchema.index({ optionIsPublic: 1 })
 

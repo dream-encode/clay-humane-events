@@ -380,25 +380,29 @@ const EventEdit = () => {
 					</div>
 				</div>
 
-				{event.eventPageQR && event.eventRegistrationQR && (
+				{event.eventSlug && (
 					<div className="event-edit-qr-codes">
 						<h3>QR Codes</h3>
-						<div className="qr-codes-grid">
-							<div className="qr-code-item">
-								<label>Event Page</label>
-								<img src={`${ CONFIG.API_URL }${ event.eventPageQR }`} alt="Event Page QR Code" />
-								<a href={`${ CONFIG.API_URL }${ event.eventPageQR }`} download={`${ event.eventSlug }-event-page-qr.png`} className="btn btn-sm btn-ghost-blue btn-round">
-									<FontAwesomeIcon icon="download" /> Download
-								</a>
+						{event.eventPageQR && event.eventRegistrationQR ? (
+							<div className="qr-codes-grid">
+								<div className="qr-code-item">
+									<label>Event Page</label>
+									<img src={`${ CONFIG.API_URL }${ event.eventPageQR }`} alt="Event Page QR Code" />
+									<a href={`${ CONFIG.API_URL }${ event.eventPageQR }`} download={`${ event.eventSlug }-event-page-qr.png`} className="btn btn-sm btn-ghost-blue btn-round">
+										<FontAwesomeIcon icon="download" /> Download
+									</a>
+								</div>
+								<div className="qr-code-item">
+									<label>Registration Form</label>
+									<img src={`${ CONFIG.API_URL }${ event.eventRegistrationQR }`} alt="Registration Form QR Code" />
+									<a href={`${ CONFIG.API_URL }${ event.eventRegistrationQR }`} download={`${ event.eventSlug }-registration-qr.png`} className="btn btn-sm btn-ghost-blue btn-round">
+										<FontAwesomeIcon icon="download" /> Download
+									</a>
+								</div>
 							</div>
-							<div className="qr-code-item">
-								<label>Registration Form</label>
-								<img src={`${ CONFIG.API_URL }${ event.eventRegistrationQR }`} alt="Registration Form QR Code" />
-								<a href={`${ CONFIG.API_URL }${ event.eventRegistrationQR }`} download={`${ event.eventSlug }-registration-qr.png`} className="btn btn-sm btn-ghost-blue btn-round">
-									<FontAwesomeIcon icon="download" /> Download
-								</a>
-							</div>
-						</div>
+						) : (
+							<p className="qr-codes-pending">QR codes will be generated when you save this event.</p>
+						)}
 					</div>
 				)}
 

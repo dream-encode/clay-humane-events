@@ -25,6 +25,13 @@ export default defineConfig(({ command, mode }) => {
 				'.clayhumaneevents.local'
 			]
 		},
+		css: {
+			preprocessorOptions: {
+				scss: {
+					api: 'modern-compiler'
+				}
+			}
+		},
 		plugins: [
 			react()
 		]

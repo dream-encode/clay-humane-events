@@ -76,7 +76,6 @@ const DataMigrationSchema = new Schema({
 	timestamps: true
 })
 
-DataMigrationSchema.index({ key: 1 })
 DataMigrationSchema.index({ migrator: 1 })
 DataMigrationSchema.index({ status: 1 })
 DataMigrationSchema.index({ createdAt: -1 })
