@@ -16,7 +16,7 @@ const formatDate = ( dateString ) => {
 /**
  * Notes drawer component with unread badge and per-user read tracking.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {Object} props
  * @param {string} props.entityType The entity type.

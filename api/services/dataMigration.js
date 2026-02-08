@@ -4,7 +4,7 @@ import DataMigration from '../models/dataMigration.js'
 /**
  * DataMigration service.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 class DataMigrationService extends BaseEntityService {
 	constructor() {
@@ -18,7 +18,7 @@ class DataMigrationService extends BaseEntityService {
 	/**
 	 * Get the latest migration for a migrator.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} migrator The migrator identifier.
 	 * @return {Promise<Object>} The latest migration.
@@ -30,7 +30,7 @@ class DataMigrationService extends BaseEntityService {
 	/**
 	 * Get migration progress.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} id The migration ID.
 	 * @return {Promise<Object>} Migration progress data.
@@ -56,7 +56,7 @@ class DataMigrationService extends BaseEntityService {
 	/**
 	 * Cancel a migration.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} id      The migration ID.
 	 * @param {Object} context Request context.

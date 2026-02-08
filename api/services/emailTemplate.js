@@ -8,7 +8,7 @@ import { logFile } from '../inc/helpers.js'
  * Manages configurable email templates with per-event override support.
  * Template hierarchy: per-event DB template > global DB template > hardcoded default.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 class EmailTemplateService extends BaseEntityService {
 	constructor() {
@@ -22,7 +22,7 @@ class EmailTemplateService extends BaseEntityService {
 	/**
 	 * Get the resolved template for a given type and optional event.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string}      templateType Template type identifier.
 	 * @param {string|null} eventId      Optional event ID for per-event override.
@@ -74,7 +74,7 @@ class EmailTemplateService extends BaseEntityService {
 	/**
 	 * Substitute variables in a template string.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} template  Template string with {{variable}} placeholders.
 	 * @param {Object} variables Key-value pairs for substitution.
@@ -94,7 +94,7 @@ class EmailTemplateService extends BaseEntityService {
 	/**
 	 * Validate template data.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} templateData Template data to validate.
 	 * @return {Object} Validation result with isValid and errors.
@@ -125,7 +125,7 @@ class EmailTemplateService extends BaseEntityService {
 	/**
 	 * Save or update a template.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} templateData Template data.
 	 * @param {string} modifiedBy   User ID who modified.
@@ -173,7 +173,7 @@ class EmailTemplateService extends BaseEntityService {
 	/**
 	 * Reset a template to defaults by deactivating the DB record.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string}      templateType Template type.
 	 * @param {string|null} eventId      Optional event ID.
@@ -200,7 +200,7 @@ class EmailTemplateService extends BaseEntityService {
 	/**
 	 * Get all template types with their current source.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Promise<Array>} Template type summaries.
 	 */

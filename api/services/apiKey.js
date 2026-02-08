@@ -4,7 +4,7 @@ import ApiKey from '../models/apiKey.js'
 /**
  * ApiKey service.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 class ApiKeyService extends BaseEntityService {
 	constructor() {
@@ -18,7 +18,7 @@ class ApiKeyService extends BaseEntityService {
 	/**
 	 * Find an API key by its key value.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} key The API key value.
 	 * @return {Promise<Object|null>} The API key or null.

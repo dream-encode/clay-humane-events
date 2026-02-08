@@ -36,7 +36,7 @@ const generateFieldName = ( label ) => {
 /**
  * Inline registration form builder with config on the left and preview on the right.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {Object}   props
  * @param {Object}   props.event  The event object.

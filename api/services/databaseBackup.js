@@ -4,7 +4,7 @@ import DatabaseBackup from '../models/databaseBackup.js'
 /**
  * DatabaseBackup service.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 class DatabaseBackupService extends BaseEntityService {
 	constructor() {
@@ -18,7 +18,7 @@ class DatabaseBackupService extends BaseEntityService {
 	/**
 	 * Get backups by type.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} type The backup type (backup/restore).
 	 * @return {Promise<Array>} Backups of the given type.
@@ -30,7 +30,7 @@ class DatabaseBackupService extends BaseEntityService {
 	/**
 	 * Get active operations.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Promise<Array>} Active backup/restore operations.
 	 */
@@ -41,7 +41,7 @@ class DatabaseBackupService extends BaseEntityService {
 	/**
 	 * Cancel an operation.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} id       The operation ID.
 	 * @param {Object} context  Request context.

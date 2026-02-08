@@ -15,7 +15,7 @@ class EventRegistrationService extends BaseEntityService {
 	/**
 	 * Register a user for an event. Creates a lightweight user account if one doesn't exist.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} registrationData Registration data including eventId, formData, and registrant info.
 	 * @return {Object} The created registration and user.
@@ -135,7 +135,7 @@ class EventRegistrationService extends BaseEntityService {
 	/**
 	 * Get all registrations for a specific event with populated user data.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} eventId The event ID.
 	 * @return {Array} Registrations with populated user data.
@@ -147,7 +147,7 @@ class EventRegistrationService extends BaseEntityService {
 	/**
 	 * Get all registrations for a specific user.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} userId The user ID.
 	 * @return {Array} Registrations with populated event data.
@@ -159,7 +159,7 @@ class EventRegistrationService extends BaseEntityService {
 	/**
 	 * Get all registrations with populated event and user data.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} filters Optional filters (e.g. { eventId }).
 	 * @return {Array} Registrations with populated event and user data.
@@ -184,7 +184,7 @@ class EventRegistrationService extends BaseEntityService {
 	/**
 	 * Get registration counts grouped by event.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Array} Array of { _id: eventId, count: number }.
 	 */

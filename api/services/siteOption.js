@@ -4,7 +4,7 @@ import SiteOption from '../models/siteOption.js'
 /**
  * SiteOption service.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 class SiteOptionService extends BaseEntityService {
 	constructor() {
@@ -18,7 +18,7 @@ class SiteOptionService extends BaseEntityService {
 	/**
 	 * Get a site option by its option key.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} optionKey The option key.
 	 * @return {Promise<Object>} The site option.
@@ -36,7 +36,7 @@ class SiteOptionService extends BaseEntityService {
 	/**
 	 * Get all public site options.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Promise<Array>} Public site options.
 	 */
@@ -47,7 +47,7 @@ class SiteOptionService extends BaseEntityService {
 	/**
 	 * Get all admin site options.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Promise<Array>} All site options for admin.
 	 */
@@ -58,7 +58,7 @@ class SiteOptionService extends BaseEntityService {
 	/**
 	 * Get site options by group.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} group The option group.
 	 * @return {Promise<Array>} Site options in the group.

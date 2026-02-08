@@ -32,7 +32,7 @@ export const DEFAULT_TEMPLATES = {
 /**
  * Load email template from file.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {string} templateName Template filename without extension.
  * @return {string} Template HTML content.
@@ -49,7 +49,7 @@ export const loadEmailTemplate = (templateName) => {
 /**
  * Create a complete email with header, content, and footer.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {string} content     HTML content for the email body.
  * @param {Object} options     Template options.
@@ -133,7 +133,7 @@ export const createEmailWithTemplate = (content, options = {}) => {
 /**
  * Create password reset email template.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {string} resetUrl Password reset URL.
  * @return {string} Complete HTML email.
@@ -158,7 +158,7 @@ export const createPasswordResetEmail = (resetUrl) => {
 /**
  * Create registration confirmation email template.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {Object} data Registration and event data.
  * @return {string} Complete HTML email.
@@ -209,7 +209,7 @@ export const createRegistrationConfirmationEmail = (data) => {
 /**
  * Create admin notification email template.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {string}      title      Email title.
  * @param {string}      message    Email message body.
@@ -241,7 +241,7 @@ export const createAdminNotificationEmail = (title, message, actionUrl = null, a
 /**
  * Create notification email template.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {string}      title      Email title.
  * @param {string}      message    Email message body.

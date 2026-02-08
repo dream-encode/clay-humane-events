@@ -3,7 +3,7 @@ import { Schema } from 'mongoose'
 /**
  * Tracks per-user read status for notes.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 const NoteReadSchema = new Schema({
 	noteId: {

@@ -5,7 +5,7 @@ import NoteRead from '../models/noteRead.js'
 /**
  * Note service for abstract notes linked to any entity type.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 class NoteService extends BaseEntityService {
 	constructor() {
@@ -19,7 +19,7 @@ class NoteService extends BaseEntityService {
 	/**
 	 * Get notes for a specific entity.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} entityType The entity type.
 	 * @param {string} entityId   The entity ID.
@@ -32,7 +32,7 @@ class NoteService extends BaseEntityService {
 	/**
 	 * Get notes by entity type.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} entityType The entity type.
 	 * @return {Promise<Array>} Notes for the entity type.
@@ -44,7 +44,7 @@ class NoteService extends BaseEntityService {
 	/**
 	 * Insert a note with the creating user.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} noteData The note data.
 	 * @param {Object} context  Request context.
@@ -61,7 +61,7 @@ class NoteService extends BaseEntityService {
 	/**
 	 * Mark notes as read for a user.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Array}  noteIds The note IDs.
 	 * @param {string} userId  The user ID.
@@ -74,7 +74,7 @@ class NoteService extends BaseEntityService {
 	/**
 	 * Get unread note count for an entity and user.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} entityType The entity type.
 	 * @param {string} entityId   The entity ID.
@@ -90,7 +90,7 @@ class NoteService extends BaseEntityService {
 	/**
 	 * Get read note IDs for a user from a set of notes.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} userId  The user ID.
 	 * @param {Array}  noteIds The note IDs.
