@@ -50,7 +50,6 @@ const ApiKeySchema = new Schema({
 	timestamps: true
 })
 
-ApiKeySchema.index({ key: 1 })
 ApiKeySchema.index({ isActive: 1 })
 ApiKeySchema.index({ expiresAt: 1 })
 

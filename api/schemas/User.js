@@ -98,8 +98,6 @@ const UserSchema = new Schema({
 	timestamps: true
 })
 
-UserSchema.index({ email: 1 })
-UserSchema.index({ key: 1 })
 UserSchema.index({ isActive: 1 })
 
 UserSchema.virtual('fullName').get(function() {

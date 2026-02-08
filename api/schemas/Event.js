@@ -125,8 +125,6 @@ EventSchema.pre('save', function(next) {
 	next()
 })
 
-EventSchema.index({ key: 1 })
-EventSchema.index({ eventSlug: 1 })
 EventSchema.index({ eventDate: 1 })
 EventSchema.index({ isActive: 1 })
 

@@ -35,7 +35,6 @@ const NoteSchema = new Schema({
 	timestamps: true
 })
 
-NoteSchema.index({ key: 1 })
 NoteSchema.index({ entityType: 1, entityId: 1 })
 NoteSchema.index({ createdBy: 1 })
 NoteSchema.index({ type: 1 })

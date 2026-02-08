@@ -73,7 +73,6 @@ const DatabaseBackupSchema = new Schema({
 	timestamps: true
 })
 
-DatabaseBackupSchema.index({ key: 1 })
 DatabaseBackupSchema.index({ type: 1 })
 DatabaseBackupSchema.index({ status: 1 })
 DatabaseBackupSchema.index({ createdAt: -1 })

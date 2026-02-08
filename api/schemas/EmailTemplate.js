@@ -50,7 +50,6 @@ const EmailTemplateSchema = new Schema({
 })
 
 EmailTemplateSchema.index({ templateType: 1, eventId: 1 }, { unique: true })
-EmailTemplateSchema.index({ key: 1 })
 
 export default EmailTemplateSchema
 

@@ -47,7 +47,6 @@ const ChangeLogSchema = new Schema({
 	timestamps: true
 })
 
-ChangeLogSchema.index({ key: 1 })
 ChangeLogSchema.index({ entityType: 1 })
 ChangeLogSchema.index({ entityId: 1 })
 ChangeLogSchema.index({ action: 1 })

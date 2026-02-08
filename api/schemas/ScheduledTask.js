@@ -65,7 +65,6 @@ const ScheduledTaskSchema = new Schema({
 	timestamps: true
 })
 
-ScheduledTaskSchema.index({ key: 1 })
 ScheduledTaskSchema.index({ status: 1 })
 ScheduledTaskSchema.index({ scheduledDate: 1 })
 ScheduledTaskSchema.index({ recurring: 1 })

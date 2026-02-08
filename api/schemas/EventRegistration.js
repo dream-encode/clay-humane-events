@@ -39,7 +39,6 @@ const EventRegistrationSchema = new Schema({
 	timestamps: true
 })
 
-EventRegistrationSchema.index({ key: 1 })
 EventRegistrationSchema.index({ eventId: 1 })
 EventRegistrationSchema.index({ userId: 1 })
 EventRegistrationSchema.index({ eventId: 1, userId: 1 })
