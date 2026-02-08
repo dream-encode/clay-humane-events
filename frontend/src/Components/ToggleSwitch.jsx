@@ -1,7 +1,7 @@
 /**
  * A reusable toggle switch component.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {Object}   props
  * @param {boolean}  props.checked  Whether the toggle is on.

@@ -15,7 +15,7 @@ const ScopeSchema = new Schema({
 /**
  * ApiKey schema.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 const ApiKeySchema = new Schema({
 	key: {

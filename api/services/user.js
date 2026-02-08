@@ -378,7 +378,7 @@ class UserService {
 	/**
 	 * Get all admin and superadmin users.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Array} Admin/superadmin users.
 	 */

@@ -35,15 +35,15 @@ jobs:
             git clean -df
 
             if [ -n "${{ github.event.release.tag_name }}" ]; then
-              git checkout tags/${{ github.event.release.tag_name }}
+              git -c advice.detachedHead=false checkout tags/${{ github.event.release.tag_name }}
             else
               git pull origin main
             fi
 
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            nvm install 24
-            nvm use 24
+            nvm install
+            nvm use
 
             cd api
             yarn install --production --frozen-lockfile

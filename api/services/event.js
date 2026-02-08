@@ -52,7 +52,7 @@ class EventService extends BaseEntityService {
 	/**
 	 * Generate QR code images for an event.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} event Event document.
 	 * @return {Promise<Object>} Object with eventPageQR and eventRegistrationQR paths.
@@ -79,7 +79,7 @@ class EventService extends BaseEntityService {
 	/**
 	 * Delete existing QR code files for an event.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} event Event document.
 	 */
@@ -99,7 +99,7 @@ class EventService extends BaseEntityService {
 	/**
 	 * Insert a new event and generate QR codes.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} entityData Event data.
 	 * @param {Object} context    Optional context with user info.
@@ -124,7 +124,7 @@ class EventService extends BaseEntityService {
 	/**
 	 * Update an event and regenerate QR codes if the slug changed.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} id         Event ID.
 	 * @param {Object} entityData Updated event data.
@@ -159,7 +159,7 @@ class EventService extends BaseEntityService {
 	/**
 	 * Get an event by its key (UUID) or slug.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} keyOrSlug UUID key or event slug.
 	 * @return {Promise<Object>} Event document.
@@ -181,7 +181,7 @@ class EventService extends BaseEntityService {
 	/**
 	 * Get events with open registration.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Promise<Array>} Events with open registration.
 	 */
@@ -192,7 +192,7 @@ class EventService extends BaseEntityService {
 	/**
 	 * Get the next upcoming event.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Promise<Object|null>} Next event or null.
 	 */

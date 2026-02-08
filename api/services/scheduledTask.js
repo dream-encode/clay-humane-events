@@ -5,7 +5,7 @@ import ScheduledTaskLog from '../models/scheduledTaskLog.js'
 /**
  * ScheduledTask service.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 class ScheduledTaskService extends BaseEntityService {
 	constructor() {
@@ -19,7 +19,7 @@ class ScheduledTaskService extends BaseEntityService {
 	/**
 	 * Get pending tasks ready to run.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Promise<Array>} Pending tasks.
 	 */
@@ -30,7 +30,7 @@ class ScheduledTaskService extends BaseEntityService {
 	/**
 	 * Get recurring tasks.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Promise<Array>} Recurring tasks.
 	 */
@@ -41,7 +41,7 @@ class ScheduledTaskService extends BaseEntityService {
 	/**
 	 * Complete a scheduled task.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} id      The task ID.
 	 * @param {Object} context Request context.
@@ -54,7 +54,7 @@ class ScheduledTaskService extends BaseEntityService {
 	/**
 	 * Fail a scheduled task.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} id      The task ID.
 	 * @param {string} error   The error message.
@@ -75,7 +75,7 @@ class ScheduledTaskService extends BaseEntityService {
 	/**
 	 * Get task logs for a specific task.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} taskId The task ID.
 	 * @return {Promise<Array>} Task logs.
@@ -87,7 +87,7 @@ class ScheduledTaskService extends BaseEntityService {
 	/**
 	 * Create a task log entry.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} logData The log data.
 	 * @return {Promise<Object>} The saved log entry.
@@ -100,7 +100,7 @@ class ScheduledTaskService extends BaseEntityService {
 	/**
 	 * Get recurring frequency options.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Array} Available recurring frequencies.
 	 */

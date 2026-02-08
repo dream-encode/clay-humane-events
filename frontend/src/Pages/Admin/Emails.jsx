@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import API from '../../inc/api'
 import { formatRelativeTime } from '../../inc/helpers'
+import { useAuth } from '../../context/AuthContext'
 import { useToast } from '../../context/ToastContext'
+import SendEmailModal from '../../Components/Modal/SendEmailModal'
 
 const EMAIL_TYPES = [ 'password_reset', 'email_verification', 'notification', 'marketing', 'system', 'registration_confirmation' ]
 const STATUSES = [ 'pending', 'sent', 'failed', 'bounced', 'delivered' ]
@@ -13,7 +15,10 @@ const formatEmailType = ( type ) => {
 }
 
 const Emails = () => {
-	const { showError } = useToast()
+	const { user } = useAuth()
+	const { showSuccess, showError } = useToast()
+
+	const isSuperAdmin = user?.role === 'superadmin'
 
 	const [ emails, setEmails ] = useState( [] )
 	const [ loading, setLoading ] = useState( true )
@@ -21,6 +26,8 @@ const Emails = () => {
 	const [ filterStatus, setFilterStatus ] = useState( '' )
 	const [ page, setPage ] = useState( 0 )
 	const [ hasMore, setHasMore ] = useState( false )
+	const [ isSendModalOpen, setIsSendModalOpen ] = useState( false )
+	const [ resendingId, setResendingId ] = useState( null )
 
 	const limit = 25
 
@@ -60,10 +67,37 @@ const Emails = () => {
 		setPage( 0 )
 	}, [ filterType, filterStatus ] )
 
+	const handleResend = async ( email ) => {
+		setResendingId( email._id )
+
+		try {
+			const result = await API.resendEmail( email._id )
+
+			if ( result?.error ) {
+				showError( result.message || 'Failed to resend email.' )
+				return
+			}
+
+			showSuccess( 'Email resent successfully.' )
+			loadEmails()
+		} catch {
+			showError( 'Failed to resend email.' )
+		} finally {
+			setResendingId( null )
+		}
+	}
+
 	return (
 		<section className="page emails">
 			<div className="page-header">
 				<h2>Emails</h2>
+				{isSuperAdmin && (
+					<div className="page-header-actions">
+						<button className="btn btn-md btn-filled-green btn-round" onClick={() => setIsSendModalOpen( true )}>
+							<FontAwesomeIcon icon="paper-plane" /> Send Email
+						</button>
+					</div>
+				)}
 			</div>
 
 			<div className="section">
@@ -96,6 +130,7 @@ const Emails = () => {
 									<th>Type</th>
 									<th>Status</th>
 									<th>Sent</th>
+									<th className="actions">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -105,7 +140,12 @@ const Emails = () => {
 										<td>{email.subject}</td>
 										<td><span className={`emails-badge emails-badge--type`}>{formatEmailType( email.emailType )}</span></td>
 										<td><span className={`emails-badge emails-badge--${ email.status }`}>{email.status}</span></td>
-										<td>{email.sentAt ? formatRelativeTime( email.sentAt ) : formatRelativeTime( email.createdAt )}</td>
+											<td>{email.sentAt ? formatRelativeTime( email.sentAt ) : formatRelativeTime( email.createdAt )}</td>
+										<td className="actions">
+											<button className="btn btn-sm btn-filled-blue btn-round" onClick={() => handleResend( email )} disabled={resendingId === email._id}>
+												<FontAwesomeIcon icon="rotate" /> {resendingId === email._id ? 'Resending...' : 'Resend'}
+											</button>
+										</td>
 									</tr>
 								) )}
 							</tbody>
@@ -123,6 +163,14 @@ const Emails = () => {
 					</>
 				)}
 			</div>
+
+			{isSuperAdmin && (
+				<SendEmailModal
+					isOpen={isSendModalOpen}
+					onClose={() => setIsSendModalOpen( false )}
+					onSuccess={loadEmails}
+				/>
+			)}
 		</section>
 	)
 }

@@ -1,7 +1,7 @@
 /**
  * Middleware to check API key scopes for entity access.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {string} entityType  The entity type to check scope for.
  * @param {string} permission  The permission level required ('read' or 'write').

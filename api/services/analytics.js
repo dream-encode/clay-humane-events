@@ -29,13 +29,13 @@ const ENTITY_MAP = {
 /**
  * Analytics service for aggregating entity data.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 class AnalyticsService {
 	/**
 	 * Get the model for an entity type.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} entityType The entity type.
 	 * @return {Object} The mongoose model.
@@ -53,7 +53,7 @@ class AnalyticsService {
 	/**
 	 * Get valid entity types.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @return {Array} Valid entity type names.
 	 */
@@ -64,7 +64,7 @@ class AnalyticsService {
 	/**
 	 * Get time-based aggregated data.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} entityType The entity type.
 	 * @param {string} unit       The time unit (minute, hour, day, month, year).
@@ -99,7 +99,7 @@ class AnalyticsService {
 	/**
 	 * Get entity stats.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} entityType The entity type.
 	 * @return {Promise<Object>} Entity statistics.

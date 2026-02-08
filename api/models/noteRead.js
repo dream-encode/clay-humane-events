@@ -7,7 +7,7 @@ const NoteRead = model('NoteRead', NoteReadSchema)
 /**
  * Mark a note as read for a user.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {string} noteId The note ID.
  * @param {string} userId The user ID.
@@ -24,7 +24,7 @@ NoteRead.markAsRead = (noteId, userId) => {
 /**
  * Mark multiple notes as read for a user.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {Array}  noteIds The note IDs.
  * @param {string} userId  The user ID.
@@ -45,7 +45,7 @@ NoteRead.markManyAsRead = (noteIds, userId) => {
 /**
  * Get read note IDs for a user from a list of note IDs.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {string} userId  The user ID.
  * @param {Array}  noteIds The note IDs to check.
@@ -59,7 +59,7 @@ NoteRead.getReadNoteIds = async (userId, noteIds) => {
 /**
  * Get unread note count for an entity and user.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @param {string} userId     The user ID.
  * @param {Array}  allNoteIds All note IDs for the entity.

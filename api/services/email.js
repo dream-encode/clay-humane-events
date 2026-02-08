@@ -9,7 +9,7 @@ import { logFile } from '../inc/helpers.js'
 /**
  * Email service extending BaseEntityService with SMTP sending capabilities.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  */
 class EmailService extends BaseEntityService {
 	constructor() {
@@ -26,7 +26,7 @@ class EmailService extends BaseEntityService {
 	/**
 	 * Initialize the nodemailer SMTP transporter.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 */
 	initializeTransporter() {
 		try {
@@ -49,7 +49,7 @@ class EmailService extends BaseEntityService {
 	/**
 	 * Send an email and track it in the database.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} emailData       Email data object.
 	 * @param {Object} context         Optional context for changelog.
@@ -113,9 +113,33 @@ class EmailService extends BaseEntityService {
 	}
 
 	/**
+	 * Resend an existing email by ID.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param {string} emailId Email record ID.
+	 * @param {Object} context Optional context for changelog.
+	 * @return {Promise<Object>} Send result.
+	 */
+	async resendEmail(emailId, context = {}) {
+		const existing = await this.getEntityByID(emailId)
+
+		return await this.sendEmail({
+			to: existing.to,
+			subject: existing.subject,
+			body: existing.body,
+			bodyType: existing.bodyType || 'html',
+			emailType: existing.emailType,
+			groupKey: existing.groupKey,
+			userId: existing.userId,
+			templateData: existing.metadata?.templateData
+		}, context)
+	}
+
+	/**
 	 * Send a password reset email.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} userEmail  Recipient email.
 	 * @param {string} resetToken Reset token.
@@ -151,7 +175,7 @@ class EmailService extends BaseEntityService {
 	/**
 	 * Send a registration confirmation email.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} data    Registration and event data.
 	 * @param {Object} context Optional context for changelog.
@@ -199,7 +223,7 @@ class EmailService extends BaseEntityService {
 	/**
 	 * Build HTML table of registration fields.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} formData           Submitted form data.
 	 * @param {Array}  registrationFields Event registration field definitions.
@@ -232,7 +256,7 @@ class EmailService extends BaseEntityService {
 	/**
 	 * Send an admin notification email.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} to          Recipient email.
 	 * @param {string} title       Notification title.

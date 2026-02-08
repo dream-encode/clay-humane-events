@@ -13,7 +13,7 @@ class ChangeLogService extends BaseEntityService {
 	/**
 	 * Log a changelog entry.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {Object} data Changelog entry data.
 	 * @return {Promise<Object>} The saved changelog entry.
@@ -26,7 +26,7 @@ class ChangeLogService extends BaseEntityService {
 	/**
 	 * Get changelog entries for a specific entity.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} entityType The entity type.
 	 * @param {string} entityId   The entity ID.
@@ -39,7 +39,7 @@ class ChangeLogService extends BaseEntityService {
 	/**
 	 * Get changelog entries by entity type.
 	 *
-	 * @since [NEXT_VERSION]
+	 * @since 1.1.0
 	 *
 	 * @param {string} entityType The entity type.
 	 * @return {Promise<Array>} Changelog entries.

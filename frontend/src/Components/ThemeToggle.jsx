@@ -3,7 +3,7 @@ import { useTheme } from '../context/ThemeContext'
 /**
  * Theme toggle component that switches between light and dark modes.
  *
- * @since [NEXT_VERSION]
+ * @since 1.1.0
  *
  * @return {JSX.Element} Theme toggle button.
  */
