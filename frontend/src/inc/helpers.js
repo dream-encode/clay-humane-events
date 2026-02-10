@@ -49,6 +49,20 @@ export const isPublicApiEndpoint = ( endpoint ) => {
 		   endpoint.includes( 'eventRegistration/register' )
 }
 
+export const stripHtml = ( html ) => {
+	if ( !html ) return ''
+
+	const doc = new DOMParser().parseFromString( html, 'text/html' )
+
+	return doc.body.textContent || ''
+}
+
+export const truncateText = ( text, maxLength = 150 ) => {
+	if ( !text || text.length <= maxLength ) return text
+
+	return text.substring( 0, maxLength ).trimEnd() + '...'
+}
+
 export const formatRelativeTime = ( date ) => {
 	if ( !date ) {
 		return 'Unknown'

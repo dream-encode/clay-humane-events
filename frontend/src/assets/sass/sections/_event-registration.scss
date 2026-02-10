@@ -24,7 +24,58 @@
 			font-size: 0.9375rem;
 			color: var(--text-secondary);
 			margin: 0;
-			line-height: 1.5;
+			line-height: 1.6;
+			text-align: left;
+
+			p {
+				margin: 0 0 0.5rem 0;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+			strong {
+				font-weight: 600;
+				color: var(--text-primary);
+			}
+
+			em {
+				font-style: italic;
+			}
+
+			ul,
+			ol {
+				margin: 0.5rem 0;
+				padding-left: 1.5rem;
+			}
+
+			li {
+				margin-bottom: 0.25rem;
+			}
+
+			a {
+				color: var(--accent-primary);
+				text-decoration: underline;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				color: var(--text-primary);
+				margin: 0.75rem 0 0.375rem 0;
+				font-weight: 600;
+			}
+
+			blockquote {
+				border-left: 3px solid var(--border-color);
+				padding-left: 0.75rem;
+				margin: 0.5rem 0;
+				color: var(--text-tertiary);
+			}
 		}
 	}
 

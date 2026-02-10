@@ -63,6 +63,13 @@ User.getUserByResetToken = (token) => {
 	}).select('+passwordResetToken +passwordResetExpires +password')
 }
 
+User.getUserByInvitationToken = (token) => {
+	return User.findOne({
+		invitationToken: token,
+		invitationTokenExpires: { $gt: Date.now() }
+	}).select('+invitationToken +invitationTokenExpires +password')
+}
+
 User.searchUsers = (searchTerm) => {
 	const regex = new RegExp(searchTerm, 'i')
 	return User.find({

@@ -73,7 +73,8 @@ const DataMigrationSchema = new Schema({
 		default: []
 	}
 }, {
-	timestamps: true
+	timestamps: true,
+	suppressReservedKeysWarning: true
 })
 
 DataMigrationSchema.index({ migrator: 1 })

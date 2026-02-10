@@ -152,6 +152,18 @@
 			border-radius: 3px;
 			font-size: 0.75rem;
 		}
+
+		.email-templates-variable-tag {
+			cursor: pointer;
+			transition:
+				background-color 0.15s ease,
+				color 0.15s ease;
+
+			&:hover {
+				background: var(--color-blue);
+				color: #fff;
+			}
+		}
 	}
 
 	.email-templates-actions {
@@ -175,10 +187,10 @@
 	}
 
 	.email-templates-preview-frame {
-		background: white;
-		padding: 1rem;
+		width: 100%;
+		min-height: 500px;
+		border: none;
 		border-radius: 4px;
-		max-height: 500px;
-		overflow-y: auto;
+		background: white;
 	}
 }

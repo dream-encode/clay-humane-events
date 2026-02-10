@@ -18,17 +18,22 @@ import CacheService from './cache.js'
 class UserService {
 	async registerUser(userData, requestingUser = null) {
 		const { email, password, firstName, lastName, registrationIp, userAgent, role } = userData
+		const isAdminCreated = !!requestingUser
 
-		if (!email || !password || !firstName || !lastName) {
+		if (!email || !firstName || !lastName) {
 			throw new Error('Missing required fields!')
+		}
+
+		if (!isAdminCreated && !password) {
+			throw new Error('Password is required!')
 		}
 
 		if (!isValidEmail(email)) {
 			throw new Error('Invalid email format!')
 		}
 
-		if (!isValidPassword(password)) {
-			throw new Error('Password must be at least 8 characters with uppercase, lowercase, and number!')
+		if (password && !isValidPassword(password)) {
+			throw new Error('Password must be at least 8 characters with uppercase, lowercase, a number, and a special character!')
 		}
 
 		const existingUser = await User.getUserByEmail(email)
@@ -42,11 +47,8 @@ class UserService {
 			requestedRole = role
 		}
 
-		const hashedPassword = hashPassword(password)
-
 		const newUserData = {
 			email: email.toLowerCase(),
-			password: hashedPassword,
 			firstName,
 			lastName,
 			role: requestedRole,
@@ -54,6 +56,19 @@ class UserService {
 				registrationIp,
 				userAgent
 			}
+		}
+
+		if (password) {
+			newUserData.password = hashPassword(password)
+		}
+
+		let rawInvitationToken = null
+
+		if (isAdminCreated) {
+			rawInvitationToken = randomBytes(32).toString('hex')
+			const hashedToken = createHash('sha256').update(rawInvitationToken).digest('hex')
+			newUserData.invitationToken = hashedToken
+			newUserData.invitationTokenExpires = new Date(Date.now() + 48 * 60 * 60 * 1000)
 		}
 
 		const newUser = new User(newUserData)
@@ -69,7 +84,10 @@ class UserService {
 			user: requestingUser || null
 		})
 
-		return sanitizeUserForPublic(savedUser.toObject())
+		const result = sanitizeUserForPublic(savedUser.toObject())
+		result.invitationToken = rawInvitationToken
+
+		return result
 	}
 
 	async loginUser(loginData) {
@@ -392,7 +410,7 @@ class UserService {
 		}
 
 		if (!isValidPassword(newPassword)) {
-			throw new Error('Password must be at least 8 characters with uppercase, lowercase, and number.')
+			throw new Error('Password must be at least 8 characters with uppercase, lowercase, a number, and a special character.')
 		}
 
 		const user = await User.findById(userId).select('+password')
@@ -461,13 +479,52 @@ class UserService {
 		return { success: true, token: rawToken, user }
 	}
 
+	async setPasswordWithToken(token, newPassword) {
+		if (!token || !newPassword) {
+			throw new Error('Token and new password are required.')
+		}
+
+		if (!isValidPassword(newPassword)) {
+			throw new Error('Password must be at least 8 characters with uppercase, lowercase, a number, and a special character.')
+		}
+
+		const hashedToken = createHash('sha256').update(token).digest('hex')
+		const user = await User.getUserByInvitationToken(hashedToken)
+
+		if (!user) {
+			throw new Error('Invalid or expired invitation token.')
+		}
+
+		const hashedPassword = hashPassword(newPassword)
+
+		const before = user.toObject()
+
+		await User.findByIdAndUpdate(user._id, {
+			$set: { password: hashedPassword },
+			$unset: { invitationToken: 1, invitationTokenExpires: 1 }
+		})
+
+		changelogEmitter.emit('entity:updated', {
+			entityType: 'User',
+			entityId: user._id,
+			before,
+			after: { ...before, password: '[REDACTED]' },
+			user: null
+		})
+
+		await CacheService.delete(`user-by-id-${user._id}`)
+		await CacheService.delete(`user-by-key-${user.key}`)
+
+		return { success: true }
+	}
+
 	async resetPassword(token, newPassword) {
 		if (!token || !newPassword) {
 			throw new Error('Token and new password are required.')
 		}
 
 		if (!isValidPassword(newPassword)) {
-			throw new Error('Password must be at least 8 characters with uppercase, lowercase, and number.')
+			throw new Error('Password must be at least 8 characters with uppercase, lowercase, a number, and a special character.')
 		}
 
 		const hashedToken = createHash('sha256').update(token).digest('hex')

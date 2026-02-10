@@ -62,7 +62,8 @@ const ScheduledTaskSchema = new Schema({
 		default: {}
 	}
 }, {
-	timestamps: true
+	timestamps: true,
+	suppressReservedKeysWarning: true
 })
 
 ScheduledTaskSchema.index({ status: 1 })

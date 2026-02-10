@@ -187,6 +187,10 @@ class API {
 		return this.apiPostRequest( 'auth/reset-password', { token, password } )
 	}
 
+	async setPassword ( token, password ) {
+		return this.apiPostRequest( 'auth/set-password', { token, password } )
+	}
+
 	async changePassword ( currentPassword, newPassword ) {
 		return this.apiPostRequest( 'user/change-password', { currentPassword, newPassword } )
 	}
@@ -326,6 +330,10 @@ class API {
 
 	async resetEmailTemplate ( templateType, eventId = null ) {
 		return this.apiPostRequest( `emailTemplate/reset/${ templateType }`, { eventId } )
+	}
+
+	async sendTestEmail ( testEmail, subject, body, variables = [] ) {
+		return this.apiPostRequest( 'emailTemplate/send-test', { testEmail, subject, body, variables } )
 	}
 
 	async sendEmail ( emailData ) {

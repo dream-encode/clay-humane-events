@@ -4,8 +4,10 @@ import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
 
+import CONFIG from '../../config/index.js'
 import { authenticate } from '../../middleware/auth.js'
 import { requireSuperadmin, requireAdminOrSuperadmin } from '../../middleware/superadmin.js'
+import EmailService from '../../services/email.js'
 import UserService from '../../services/user.js'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -55,6 +57,19 @@ UserRoutes.post('/register', authenticate, requireAdminOrSuperadmin, async (req,
 
 		if (!user) {
 			throw new Error('Unable to register user!')
+		}
+
+		if (user.invitationToken) {
+			const setPasswordUrl = `${CONFIG.FRONTEND_URL}/set-password/${user.invitationToken}`
+
+			EmailService.sendUserInvitationEmail({
+				firstName: user.firstName,
+				lastName: user.lastName,
+				email: user.email,
+				role: user.role,
+				setPasswordUrl,
+				userId: user._id
+			}, { user: req.user }).catch(() => {})
 		}
 
 		res.status(201).json(user)

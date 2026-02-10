@@ -98,6 +98,8 @@
 			padding: 1.5rem;
 			display: flex;
 			flex-direction: column;
+			align-items: center;
+			text-align: center;
 			flex: 1;
 		}
 
@@ -123,6 +125,17 @@
 			flex: 1;
 		}
 
+		.home-event-card-read-more {
+			color: var(--accent-primary);
+			text-decoration: none;
+			font-weight: 500;
+			white-space: nowrap;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
 		.home-event-card-button {
 			display: inline-block;
 			padding: 14px 32px;
@@ -136,7 +149,6 @@
 			transition: background-color 0.2s ease;
 			text-decoration: none;
 			text-align: center;
-			align-self: flex-start;
 
 			&:hover {
 				background: #059669;

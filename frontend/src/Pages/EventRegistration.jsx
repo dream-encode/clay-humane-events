@@ -25,22 +25,22 @@ const EventRegistration = () => {
 	const loadEvent = useCallback( async () => {
 		setLoading( true )
 		setError( null )
+		setEvent( null )
 
 		try {
 			const response = await API.getPublicEventByKey( eventKey )
 
 			if ( response?.error ) {
 				setError( response.message || 'Event not found.' )
-				setEvent( null )
 			} else if ( response ) {
-				setEvent( response )
-
 				const defaults = {}
-				( response.registrationFields || [] ).forEach( ( field ) => {
+				const fields = Array.isArray( response.registrationFields ) ? response.registrationFields : []
+				fields.forEach( ( field ) => {
 					defaults[ field.name ] = field.type === 'checkbox' ? false : ''
 				} )
 
 				setFormState( { firstName: '', lastName: '', email: '', ...defaults } )
+				setEvent( response )
 			} else {
 				setError( 'Event not found.' )
 			}
@@ -198,14 +198,14 @@ const EventRegistration = () => {
 		)
 	}
 
-	const registrationFields = ( event.registrationFields || [] ).sort( ( a, b ) => a.sortOrder - b.sortOrder )
+	const registrationFields = ( Array.isArray( event.registrationFields ) ? event.registrationFields : [] ).sort( ( a, b ) => a.sortOrder - b.sortOrder )
 
 	return (
 		<section className="page event-registration">
 			<div className="reg-event-header">
 				<h1>{event.eventName}</h1>
 				<p className="reg-event-date">{formatDate( event.eventDate )}</p>
-				{ event.eventDescription && <p className="reg-event-description">{event.eventDescription}</p> }
+				{ event.eventDescription && <div className="reg-event-description" dangerouslySetInnerHTML={{ __html: event.eventDescription }} /> }
 			</div>
 
 			{ error && (
