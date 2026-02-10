@@ -3,6 +3,7 @@
 ## [NEXT_VERSION] - [UNRELEASED]
 * ENH: New user created email template.
 * ENH: Admin created user set password.
+* ENH: Events - Add WYSIWYG event description.
 * ENH: Email Templates - Clickable variables.
 * ENH: Email Templates - Add button to send a test email.
 
