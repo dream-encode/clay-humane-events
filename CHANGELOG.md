@@ -1,5 +1,8 @@
 # Changelog
 
+## [NEXT_VERSION] - [UNRELEASED]
+* BUG: Fix missing import.
+
 ## [1.2.0] - 2026-02-10
 * ENH: New user created email template.
 * ENH: Admin created user set password.
