@@ -9,3 +9,5 @@ build/
 .augment
 .vscode
 
+api/uploads
+

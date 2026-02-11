@@ -111,6 +111,10 @@
 				text-align: left;
 			}
 
+			a {
+				color: var(--color-links);
+			}
+
 			&.ql-blank::before {
 				color: var(--text-tertiary);
 				font-style: normal;

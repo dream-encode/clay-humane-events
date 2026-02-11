@@ -1,5 +1,8 @@
 # Changelog
 
+## [NEXT_VERSION] - [UNRELEASED]
+* BUG: Example fix description.
+
 ## [1.2.1] - 2026-02-10
 * BUG: Fix missing import.
 
