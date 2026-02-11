@@ -1,6 +1,6 @@
 # Changelog
 
-## [NEXT_VERSION] - [UNRELEASED]
+## [1.2.0] - 2026-02-10
 * ENH: New user created email template.
 * ENH: Admin created user set password.
 * ENH: Events - Add WYSIWYG event description.
