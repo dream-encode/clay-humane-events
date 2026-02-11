@@ -6,6 +6,8 @@
 * ENH: Events - Add WYSIWYG event description.
 * ENH: Email Templates - Clickable variables.
 * ENH: Email Templates - Add button to send a test email.
+* BUG: Event Registration - Fix failed to load event false positive.
+* BUG: Event Registration - Styling tweaks.
 
 ## [1.1.0] - 2026-02-08
 * FEA: Add send new email modal for super admins.
