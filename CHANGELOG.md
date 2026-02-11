@@ -1,6 +1,6 @@
 # Changelog
 
-## [NEXT_VERSION] - [UNRELEASED]
+## [1.2.3] - 2026-02-10
 * BUG: Event Registration - Fix link styling in light mode.
 
 ## [1.2.2] - 2026-02-10
