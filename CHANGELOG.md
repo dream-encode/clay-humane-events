@@ -1,5 +1,8 @@
 # Changelog
 
+## [NEXT_VERSION] - [UNRELEASED]
+* BUG: Event Registration - Fix link styling in light mode.
+
 ## [1.2.2] - 2026-02-10
 * ENH: Event Registration - Add event logo to registration page.
 
