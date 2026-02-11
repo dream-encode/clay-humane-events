@@ -1,6 +1,6 @@
 # Changelog
 
-## [NEXT_VERSION] - [UNRELEASED]
+## [1.2.2] - 2026-02-10
 * ENH: Event Registration - Add event logo to registration page.
 
 ## [1.2.1] - 2026-02-10
