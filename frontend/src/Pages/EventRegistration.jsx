@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import API from '../inc/api'
+import CONFIG from '../inc/config'
 
 const formatDate = ( dateString ) => {
 	if ( !dateString ) return ''
@@ -169,6 +170,11 @@ const EventRegistration = () => {
 		return (
 			<section className="page event-registration">
 				<div className="reg-event-header">
+					{ event?.eventLogo && (
+						<div className="reg-event-logo">
+							<img src={`${ CONFIG.API_URL }${ event.eventLogo }`} alt={event?.eventName} />
+						</div>
+					) }
 					<h1>{event?.eventName}</h1>
 					<p className="reg-event-date">{formatDate( event?.eventDate )}</p>
 				</div>
@@ -185,6 +191,11 @@ const EventRegistration = () => {
 		return (
 			<section className="page event-registration">
 				<div className="reg-event-header">
+					{ event.eventLogo && (
+						<div className="reg-event-logo">
+							<img src={`${ CONFIG.API_URL }${ event.eventLogo }`} alt={event.eventName} />
+						</div>
+					) }
 					<h1>{event.eventName}</h1>
 					<p className="reg-event-date">{formatDate( event.eventDate )}</p>
 				</div>
@@ -203,6 +214,11 @@ const EventRegistration = () => {
 	return (
 		<section className="page event-registration">
 			<div className="reg-event-header">
+				{ event.eventLogo && (
+					<div className="reg-event-logo">
+						<img src={`${ CONFIG.API_URL }${ event.eventLogo }`} alt={event.eventName} />
+					</div>
+				) }
 				<h1>{event.eventName}</h1>
 				<p className="reg-event-date">{formatDate( event.eventDate )}</p>
 				{ event.eventDescription && <div className="reg-event-description" dangerouslySetInnerHTML={{ __html: event.eventDescription }} /> }
