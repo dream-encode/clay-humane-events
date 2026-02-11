@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import API from '../../inc/api'
+import Modal from '../../Components/Modal/Modal'
 import { useToast } from '../../context/ToastContext'
 
 const EmailTemplates = () => {
@@ -17,6 +18,42 @@ const EmailTemplates = () => {
 	const [ saving, setSaving ] = useState( false )
 	const [ previewHtml, setPreviewHtml ] = useState( '' )
 	const [ showPreview, setShowPreview ] = useState( false )
+	const [ showTestModal, setShowTestModal ] = useState( false )
+	const [ testEmail, setTestEmail ] = useState( '' )
+	const [ sendingTest, setSendingTest ] = useState( false )
+
+	const subjectRef = useRef( null )
+	const bodyRef = useRef( null )
+	const lastFocusedRef = useRef( null )
+
+	const handleFieldFocus = ( fieldRef ) => {
+		lastFocusedRef.current = fieldRef
+	}
+
+	const handleVariableClick = ( variable ) => {
+		const text = `{{${variable}}}`
+		const ref = lastFocusedRef.current
+
+		if ( !ref?.current ) return
+
+		const el = ref.current
+		const start = el.selectionStart
+		const end = el.selectionEnd
+		const currentValue = ref === subjectRef ? editSubject : editBody
+		const newValue = currentValue.substring( 0, start ) + text + currentValue.substring( end )
+
+		if ( ref === subjectRef ) {
+			setEditSubject( newValue )
+		} else {
+			setEditBody( newValue )
+		}
+
+		requestAnimationFrame( () => {
+			el.focus()
+			const newPos = start + text.length
+			el.setSelectionRange( newPos, newPos )
+		} )
+	}
 
 	const loadTemplateTypes = useCallback( async () => {
 		setLoading( true )
@@ -170,6 +207,32 @@ const EmailTemplates = () => {
 		}
 	}
 
+	const handleSendTest = async () => {
+		if ( !testEmail.trim() ) {
+			showError( 'Please enter an email address.' )
+			return
+		}
+
+		setSendingTest( true )
+
+		try {
+			const variables = currentTypeData?.variables || []
+			const result = await API.sendTestEmail( testEmail, editSubject, editBody, variables )
+
+			if ( result && !result.error ) {
+				showSuccess( 'Test email sent successfully.' )
+				setShowTestModal( false )
+				setTestEmail( '' )
+			} else {
+				showError( result?.message || 'Failed to send test email.' )
+			}
+		} catch ( error ) {
+			showError( 'Failed to send test email.' )
+		} finally {
+			setSendingTest( false )
+		}
+	}
+
 	const currentTypeData = editingType ? templateTypes.find( ( t ) => t.templateType === editingType ) : null
 
 	return (
@@ -230,12 +293,12 @@ const EmailTemplates = () => {
 
 						<div className="email-templates-field">
 							<label>Subject</label>
-							<input type="text" value={editSubject} onChange={( e ) => setEditSubject( e.target.value )} placeholder="Email subject line" />
+							<input ref={subjectRef} type="text" value={editSubject} onChange={( e ) => setEditSubject( e.target.value )} onFocus={() => handleFieldFocus( subjectRef )} placeholder="Email subject line" />
 						</div>
 
 						<div className="email-templates-field">
 							<label>Body (HTML)</label>
-							<textarea value={editBody} onChange={( e ) => setEditBody( e.target.value )} rows={14} placeholder="Email body HTML with {{variable}} placeholders" />
+							<textarea ref={bodyRef} value={editBody} onChange={( e ) => setEditBody( e.target.value )} onFocus={() => handleFieldFocus( bodyRef )} rows={14} placeholder="Email body HTML with {{variable}} placeholders" />
 						</div>
 
 						{currentTypeData?.variables?.length > 0 && (
@@ -243,7 +306,7 @@ const EmailTemplates = () => {
 								<label>Available Variables:</label>
 								<div className="email-templates-variable-list">
 									{currentTypeData.variables.map( ( v ) => (
-										<code key={v}>{`{{${v}}}`}</code>
+										<code key={v} className="email-templates-variable-tag" onClick={() => handleVariableClick( v )}>{`{{${v}}}`}</code>
 									) )}
 								</div>
 							</div>
@@ -259,17 +322,36 @@ const EmailTemplates = () => {
 							<button className="btn btn-sm btn-ghost-red btn-round" onClick={handleReset}>
 								<FontAwesomeIcon icon="undo" /> Reset to Default
 							</button>
+							<button className="btn btn-sm btn-ghost-blue btn-round" onClick={() => setShowTestModal( true )}>
+								<FontAwesomeIcon icon="paper-plane" /> Send Test Email
+							</button>
 						</div>
 
 						{showPreview && previewHtml && (
 							<div className="email-templates-preview">
 								<h4>Preview</h4>
-								<div className="email-templates-preview-frame" dangerouslySetInnerHTML={{ __html: previewHtml }} />
+								<iframe className="email-templates-preview-frame" srcDoc={previewHtml} title="Email Preview" />
 							</div>
 						)}
 					</div>
 				)}
 			</div>
+
+			<Modal isOpen={showTestModal} onClose={() => { setShowTestModal( false ); setTestEmail( '' ) }} title="Send Test Email" size="sm">
+				<div className="email-templates-field">
+					<label>Recipient Email</label>
+					<input type="email" value={testEmail} onChange={( e ) => setTestEmail( e.target.value )} placeholder="Enter email address" autoFocus />
+				</div>
+				<p className="email-templates-editor-desc">A test email will be sent with sample variable values.</p>
+				<div className="email-templates-actions">
+					<button className="btn btn-sm btn-green btn-round" disabled={sendingTest} onClick={handleSendTest}>
+						<FontAwesomeIcon icon="paper-plane" /> {sendingTest ? 'Sending...' : 'Send Test'}
+					</button>
+					<button className="btn btn-sm btn-ghost-blue btn-round" onClick={() => { setShowTestModal( false ); setTestEmail( '' ) }}>
+						Cancel
+					</button>
+				</div>
+			</Modal>
 		</section>
 	)
 }

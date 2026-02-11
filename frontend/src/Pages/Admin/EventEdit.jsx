@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 import API from '../../inc/api'
 import CONFIG from '../../inc/config'
@@ -10,6 +12,17 @@ import ToggleSwitch from '../../Components/ToggleSwitch'
 import { useToast } from '../../context/ToastContext'
 
 const FRONTEND_URL = CONFIG.BASE_URL || ''
+
+const quillModules = {
+	toolbar: [
+		[ { header: [ 1, 2, 3, false ] } ],
+		[ 'bold', 'italic', 'underline', 'strike' ],
+		[ { list: 'ordered' }, { list: 'bullet' } ],
+		[ { align: [] } ],
+		[ 'link' ],
+		[ 'clean' ]
+	]
+}
 
 const formatDateForInput = ( dateString ) => {
 	if ( !dateString ) return ''
@@ -267,7 +280,9 @@ const EventEdit = () => {
 
 					<div className="event-edit-form-group">
 						<label>Description</label>
-						<textarea value={eventDescription} onChange={( e ) => setEventDescription( e.target.value )} rows={4} />
+						<div className="event-edit-wysiwyg">
+							<ReactQuill theme="snow" value={eventDescription} onChange={setEventDescription} modules={quillModules} />
+						</div>
 					</div>
 
 					<div className="event-edit-form-group">

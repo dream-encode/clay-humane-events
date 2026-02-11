@@ -254,6 +254,57 @@ class EmailService extends BaseEntityService {
 	}
 
 	/**
+	 * Send a user invitation email.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param {Object} data    User and invitation data.
+	 * @param {Object} context Optional context for changelog.
+	 * @return {Promise<Object>} Send result.
+	 */
+	async sendUserInvitationEmail(data, context = {}) {
+		const { createUserInvitationEmail, createEmailWithTemplate } = await import('../inc/emailTemplates.js')
+
+		const resolved = await EmailTemplateService.getResolvedTemplate('user_invitation')
+		const isAdmin = data.role === 'admin' || data.role === 'superadmin'
+		let subject, body
+
+		if (resolved && resolved.source !== 'default') {
+			let adminContentHtml = ''
+
+			if (isAdmin) {
+				adminContentHtml = `<div style="background-color: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; padding: 16px; margin: 20px 0;"><h3 style="margin: 0 0 8px 0; color: #0369a1;">Admin Access</h3><p style="margin: 0 0 8px 0;">Your account has been granted <strong>${data.role}</strong> privileges. After setting your password, you can access the admin dashboard to manage events, registrations, and more.</p></div>`
+			}
+
+			const vars = {
+				firstName: data.firstName || '',
+				lastName: data.lastName || '',
+				email: data.email || '',
+				role: data.role || 'user',
+				setPasswordUrl: data.setPasswordUrl || '',
+				adminContent: adminContentHtml
+			}
+
+			subject = EmailTemplateService.substituteVariables(resolved.subject, vars)
+			const rawBody = EmailTemplateService.substituteVariables(resolved.body, vars)
+			body = createEmailWithTemplate(rawBody)
+		} else {
+			subject = "You've Been Invited - Clay Humane Events"
+			body = createUserInvitationEmail(data)
+		}
+
+		return await this.sendEmail({
+			to: data.email,
+			subject,
+			body,
+			bodyType: 'html',
+			emailType: 'user_invitation',
+			userId: data.userId,
+			templateData: { firstName: data.firstName, role: data.role }
+		}, context)
+	}
+
+	/**
 	 * Send an admin notification email.
 	 *
 	 * @since 1.1.0

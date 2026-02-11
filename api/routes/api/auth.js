@@ -62,5 +62,16 @@ AuthRouter.post('/reset-password', async (req, res) => {
 	}
 })
 
+AuthRouter.post('/set-password', async (req, res) => {
+	try {
+		const { token, password } = req.body
+		const result = await UserService.setPasswordWithToken(token, password)
+
+		res.status(200).json(result)
+	} catch (error) {
+		res.status(400).json({ error: error.message })
+	}
+})
+
 export default AuthRouter
 

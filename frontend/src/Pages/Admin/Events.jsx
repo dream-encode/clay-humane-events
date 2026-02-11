@@ -100,7 +100,6 @@ const Events = () => {
 							<tr>
 								<th>Event Name</th>
 								<th>Date</th>
-								<th>Description</th>
 								<th className="centered">Registrations</th>
 								<th className="centered">Registration Open?</th>
 								<th className="actions">Actions</th>
@@ -111,7 +110,6 @@ const Events = () => {
 								<tr key={event._id}>
 									<td>{event.eventName}</td>
 									<td>{formatDate( event.eventDate )}</td>
-									<td>{event.eventDescription}</td>
 									<td className="centered">
 										<Link to={`/admin/registrations?eventId=${ event._id }`} className="registration-count-link">
 											{registrationCounts[ event._id ] || 0} <FontAwesomeIcon icon="arrow-up-right-from-square" />

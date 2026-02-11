@@ -26,6 +26,13 @@ export const DEFAULT_TEMPLATES = {
 		subject: 'Admin Notification - {{title}}',
 		body: '<h2>{{title}}</h2>\n<p>{{message}}</p>\n{{actionButton}}\n<p style="color: #888; font-size: 12px;">This is an admin notification from Clay Humane Events.</p>',
 		variables: ['title', 'message', 'actionButton']
+	},
+	user_invitation: {
+		label: 'User Invitation',
+		description: 'Sent when a new user account is created by an admin.',
+		subject: 'You\'ve Been Invited - Clay Humane Events',
+		body: '<h2>Welcome to Clay Humane Events!</h2>\n<p>Hi {{firstName}},</p>\n<p>An account has been created for you at Clay Humane Events.</p>\n<p><strong>Email:</strong> {{email}}</p>\n<p>Please click the button below to set your password and activate your account:</p>\n<div style="text-align: center; margin: 30px 0;">\n\t<a href="{{setPasswordUrl}}" style="background-color: #2c5f2d; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Set Your Password</a>\n</div>\n<p>If the button doesn\'t work, copy and paste this link into your browser:</p>\n<p style="word-break: break-all; background-color: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 12px;">{{setPasswordUrl}}</p>\n{{adminContent}}\n<p><strong>Important:</strong> This link will expire in 48 hours.</p>\n<p>If you didn\'t expect this invitation, please ignore this email.</p>',
+		variables: ['firstName', 'lastName', 'email', 'role', 'setPasswordUrl', 'adminContent']
 	}
 }
 
@@ -233,6 +240,48 @@ export const createAdminNotificationEmail = (title, message, actionUrl = null, a
 
 	content += `
 		<p style="color: #888; font-size: 12px;">This is an admin notification from Clay Humane Events.</p>
+	`
+
+	return createEmailWithTemplate(content)
+}
+
+/**
+ * Create user invitation email template.
+ *
+ * @since 1.1.0
+ *
+ * @param {Object} data Invitation data.
+ * @return {string} Complete HTML email.
+ */
+export const createUserInvitationEmail = (data) => {
+	const { firstName, email, role, setPasswordUrl } = data
+	const isAdmin = role === 'admin' || role === 'superadmin'
+
+	let adminContent = ''
+
+	if (isAdmin) {
+		adminContent = `
+			<div style="background-color: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; padding: 16px; margin: 20px 0;">
+				<h3 style="margin: 0 0 8px 0; color: #0369a1;">Admin Access</h3>
+				<p style="margin: 0 0 8px 0;">Your account has been granted <strong>${role}</strong> privileges. After setting your password, you can access the admin dashboard to manage events, registrations, and more.</p>
+			</div>
+		`
+	}
+
+	const content = `
+		<h2>Welcome to Clay Humane Events!</h2>
+		<p>Hi ${firstName},</p>
+		<p>An account has been created for you at Clay Humane Events.</p>
+		<p><strong>Email:</strong> ${email}</p>
+		<p>Please click the button below to set your password and activate your account:</p>
+		<div style="text-align: center; margin: 30px 0;">
+			<a href="${setPasswordUrl}" style="background-color: #2c5f2d; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Set Your Password</a>
+		</div>
+		<p>If the button doesn't work, copy and paste this link into your browser:</p>
+		<p style="word-break: break-all; background-color: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 12px;">${setPasswordUrl}</p>
+		${adminContent}
+		<p><strong>Important:</strong> This link will expire in 48 hours.</p>
+		<p>If you didn't expect this invitation, please ignore this email.</p>
 	`
 
 	return createEmailWithTemplate(content)

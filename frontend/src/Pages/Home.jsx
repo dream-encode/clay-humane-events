@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import API from '../inc/api'
 import CONFIG from '../inc/config'
+import { stripHtml, truncateText } from '../inc/helpers'
 import logoImage from '../assets/images/logo/clay-humane-logo-transparent.png'
 
 const formatDate = ( dateString ) => {
@@ -76,7 +77,11 @@ const Home = () => {
 									<h2 className="home-event-card-title">{event.eventName}</h2>
 									<p className="home-event-card-date">{formatDate( event.eventDate )}</p>
 									{event.eventDescription && (
-										<p className="home-event-card-description">{event.eventDescription}</p>
+										<p className="home-event-card-description">
+											{truncateText( stripHtml( event.eventDescription ) )}
+											{' '}
+											<Link to={`/event/${ event.eventSlug || event.key }/register`} className="home-event-card-read-more">Read More</Link>
+										</p>
 									)}
 									<Link to={`/event/${ event.eventSlug || event.key }/register`} className="home-event-card-button">
 										Register Now

@@ -9,6 +9,7 @@ const rootDir = path.resolve( __dirname, '../..' )
 
 const envFiles = [
 	path.join( rootDir, '.env.local' ),
+	path.join( rootDir, '.env.production' ),
 	path.join( rootDir, `.env.${process.env.NODE_ENV || 'development'}` ),
 	path.join( rootDir, '.env' ),
 ]

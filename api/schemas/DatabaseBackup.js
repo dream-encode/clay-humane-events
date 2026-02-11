@@ -70,7 +70,8 @@ const DatabaseBackupSchema = new Schema({
 		default: {}
 	}
 }, {
-	timestamps: true
+	timestamps: true,
+	suppressReservedKeysWarning: true
 })
 
 DatabaseBackupSchema.index({ type: 1 })

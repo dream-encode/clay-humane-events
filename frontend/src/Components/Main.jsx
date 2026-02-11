@@ -7,6 +7,7 @@ import PrivateRoute from './Private'
 const Login = lazy( () => import( './Login' ) )
 const ForgotPassword = lazy( () => import( '../Pages/ForgotPassword' ) )
 const ResetPassword = lazy( () => import( '../Pages/ResetPassword' ) )
+const SetPassword = lazy( () => import( '../Pages/SetPassword' ) )
 const Home = lazy( () => import( '../Pages/Home' ) )
 const Profile = lazy( () => import( '../Pages/Profile' ) )
 const EventRegistration = lazy( () => import( '../Pages/EventRegistration' ) )
@@ -34,6 +35,7 @@ const Main = () => {
 					<Route exact path='/login' element={<Login />} />
 					<Route exact path='/forgot-password' element={<ForgotPassword />} />
 					<Route exact path='/reset-password/:token' element={<ResetPassword />} />
+					<Route exact path='/set-password/:token' element={<SetPassword />} />
 					<Route exact path='/event/:eventKey/register' element={<EventRegistration />} />
 					<Route element={<PrivateRoute />}>
 						<Route exact path='/profile' element={<Profile />} />

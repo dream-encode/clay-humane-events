@@ -17,7 +17,7 @@ const UserSchema = new Schema({
 	},
 	password: {
 		type: String,
-		required: true,
+		required: false,
 		select: false
 	},
 	firstName: {
@@ -65,6 +65,16 @@ const UserSchema = new Schema({
 		select: false
 	},
 	lastPasswordResetRequest: {
+		type: Date,
+		required: false,
+		select: false
+	},
+	invitationToken: {
+		type: String,
+		required: false,
+		select: false
+	},
+	invitationTokenExpires: {
 		type: Date,
 		required: false,
 		select: false
