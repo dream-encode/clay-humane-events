@@ -1,7 +1,7 @@
 # Changelog
 
 ## [NEXT_VERSION] - [UNRELEASED]
-* BUG: Example fix description.
+* ENH: Event Registration - Add event logo to registration page.
 
 ## [1.2.1] - 2026-02-10
 * BUG: Fix missing import.
