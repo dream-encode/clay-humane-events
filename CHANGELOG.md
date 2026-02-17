@@ -1,5 +1,9 @@
 # Changelog
 
+## [NEXT_VERSION] - [UNRELEASED]
+* ENH: Add cross origin resource policy.
+* BUG: Remove registrations count icon.
+
 ## [1.2.3] - 2026-02-10
 * BUG: Event Registration - Fix link styling in light mode.
 

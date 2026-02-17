@@ -1,11 +1,11 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import API from '../../inc/api'
 import EntityFormModal from '../../Components/Modal/EntityFormModal'
 import ToggleSwitch from '../../Components/ToggleSwitch'
 import { useToast } from '../../context/ToastContext'
+import API from '../../inc/api'
 
 const eventFields = [
 	{ name: 'eventName', label: 'Event Name', type: 'text', required: true, placeholder: 'Enter event name' },
@@ -112,7 +112,7 @@ const Events = () => {
 									<td>{formatDate( event.eventDate )}</td>
 									<td className="centered">
 										<Link to={`/admin/registrations?eventId=${ event._id }`} className="registration-count-link">
-											{registrationCounts[ event._id ] || 0} <FontAwesomeIcon icon="arrow-up-right-from-square" />
+											{registrationCounts[ event._id ] || 0}
 										</Link>
 									</td>
 									<td className="centered">
@@ -146,4 +146,3 @@ const Events = () => {
 }
 
 export default Events
-
