@@ -1,8 +1,10 @@
 import react from '@vitejs/plugin-react'
+import { readFileSync } from 'fs'
 import path from 'path'
 import { defineConfig, loadEnv } from 'vite'
 
 const rootDir = path.resolve( __dirname, '..' )
+const packageJson = JSON.parse( readFileSync( path.join( rootDir, 'package.json' ), 'utf8' ) )
 
 export default defineConfig(({ command, mode }) => {
 	process.env = { ...process.env, ...loadEnv( mode, rootDir ) }
@@ -12,6 +14,7 @@ export default defineConfig(({ command, mode }) => {
 		define: {
 			'process.env': {},
 			global: {},
+			APP_VERSION: JSON.stringify( packageJson.version ),
 		},
 		resolve: {
 			alias: {

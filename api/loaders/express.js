@@ -22,7 +22,9 @@ export default async ({ app }) => {
 	app.use(express.json({ limit: '50mb' }))
 	app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')))
 	app.use(compression())
-	app.use(helmet())
+	app.use(helmet({
+		crossOriginResourcePolicy: { policy: 'cross-origin' },
+	}))
 	app.use(nocache())
 
 	return app
