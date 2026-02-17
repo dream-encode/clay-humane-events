@@ -1,6 +1,6 @@
 # Changelog
 
-## [NEXT_VERSION] - [UNRELEASED]
+## [1.3.1] - 2026-02-16
 * BUG: Ignore uploads directory in git so it's not deleted on deploy.
 
 ## [1.3.0] - 2026-02-16
