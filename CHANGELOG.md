@@ -1,5 +1,8 @@
 # Changelog
 
+## [NEXT_VERSION] - [UNRELEASED]
+* BUG: Ignore uploads directory in git so it's not deleted on deploy.
+
 ## [1.3.0] - 2026-02-16
 * ENH: Add cross origin resource policy.
 * ENH: Add app version to footer in the admin.
