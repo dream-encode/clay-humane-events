@@ -26,6 +26,7 @@ const AppContent = () => {
 		<>
 			{isAuthenticated && <SiteHeader />}
 			<Main />
+			{isAuthenticated && <div className="app-version">v{APP_VERSION}</div>}
 			<ToastContainer toasts={toasts} removeToast={removeToast} />
 		</>
 	)

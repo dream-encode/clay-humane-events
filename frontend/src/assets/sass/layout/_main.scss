@@ -3,8 +3,8 @@ main {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	gap: 2.0rem;
-	padding: 2.0rem;
+	gap: 2rem;
+	padding: 2rem;
 	min-height: 600px;
 
 	section {
@@ -13,7 +13,7 @@ main {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 2.0rem;
+		gap: 2rem;
 
 		h3 {
 			width: 100%;
@@ -45,3 +45,12 @@ main {
 	}
 }
 
+.app-version {
+	position: fixed;
+	bottom: 0.75rem;
+	right: 0.75rem;
+	font-size: 0.6875rem;
+	color: var(--text-muted);
+	pointer-events: none;
+	user-select: none;
+}

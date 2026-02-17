@@ -2,6 +2,7 @@
 
 ## [NEXT_VERSION] - [UNRELEASED]
 * ENH: Add cross origin resource policy.
+* ENH: Add app version to footer in the admin.
 * BUG: Remove registrations count icon.
 
 ## [1.2.3] - 2026-02-10
