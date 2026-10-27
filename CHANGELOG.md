@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.4.0] - 2026-10-27
+* TSK: Deploy - Build the API and frontend as container images on release, record the version in the infrastructure repository and deploy them to the dream-encode server without downtime.
+
 ## [1.3.1] - 2026-02-16
 * BUG: Ignore uploads directory in git so it's not deleted on deploy.
 
